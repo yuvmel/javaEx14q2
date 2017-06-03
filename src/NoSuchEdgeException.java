@@ -6,5 +6,4 @@
  * @author yuval.melamed
  */
 public class NoSuchEdgeException extends GraphException {
-
 }
