@@ -36,6 +36,11 @@ public class Edge<T> {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return String.format("{%s -> %s}", fromV, toV);
+    }
+
     public T getFromV() {
         return fromV;
     }

@@ -90,7 +90,7 @@ public class Graph<T> {
 
     @Override
     public String toString() {
-        return String.format("Vertexes: %s%nEdges: %s%n", vertexes, edges);
+        return String.format("{%n\tVertexes: %s%n\tEdges: %s%n}", vertexes, edges);
     }
 
     @Override
