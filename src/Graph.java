@@ -6,9 +6,8 @@ import java.util.Collection;
 import java.util.HashSet;
 
 /**
- *
- * @author yuval.melamed
  * @param <T> type of vertex
+ * @author yuval.melamed
  */
 public class Graph<T> {
 
@@ -57,18 +56,18 @@ public class Graph<T> {
         }
     }
 
-    public void addEdge(Edge<T> edge) throws
+    public void addEdge(T fromV, T toV) throws
             NoSuchVertexException, DuplicateEdgeException {
-        if (!isValidEdge(edge)) {
+        if (!vertexExists(fromV) || !vertexExists(toV)) {
             throw new NoSuchVertexException();
         }
-        if (!getEdges().add(edge)) {
+        if (!getEdges().add(new Edge<>(fromV, toV))) {
             throw new DuplicateEdgeException();
         }
     }
 
-    public void removeEdge(Edge<T> edge) throws NoSuchEdgeException {
-        if (!getEdges().remove(edge)) {
+    public void removeEdge(T fromV, T toV) throws NoSuchEdgeException {
+        if (!getEdges().remove(new Edge<>(fromV, toV))) {
             throw new NoSuchEdgeException();
         }
     }
@@ -87,5 +86,29 @@ public class Graph<T> {
 
     public HashSet<Edge<T>> getEdges() {
         return edges;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Vertexes: %s%nEdges: %s%n", vertexes, edges);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Graph<?> graph = (Graph<?>) o;
+
+        if (getVertexes() != null ? !getVertexes().equals(graph.getVertexes()) : graph.getVertexes() != null)
+            return false;
+        return getEdges() != null ? getEdges().equals(graph.getEdges()) : graph.getEdges() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getVertexes() != null ? getVertexes().hashCode() : 0;
+        result = 31 * result + (getEdges() != null ? getEdges().hashCode() : 0);
+        return result;
     }
 }
