@@ -3,7 +3,6 @@
  */
 
 /**
- *
  * @author yuval.melamed
  */
 public class DuplicateEdgeException extends GraphException {

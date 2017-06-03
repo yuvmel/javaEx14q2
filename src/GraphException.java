@@ -3,7 +3,6 @@
  */
 
 /**
- *
  * @author yuval.melamed
  */
 public abstract class GraphException extends Exception {
